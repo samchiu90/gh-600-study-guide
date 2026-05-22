@@ -1,0 +1,173 @@
+{
+  "name": "GH-600 Agentic AI Developer",
+  "children": [
+    {
+      "name": "Foundations of Agentic AI",
+      "children": [
+        {
+          "name": "Agent vs Assistant",
+          "children": [
+            {
+              "name": "Assistant: Reactive suggestions"
+            },
+            {
+              "name": "Agent: Goal-driven tool use"
+            }
+          ]
+        },
+        {
+          "name": "Lifecycle: Plan-Act-Evaluate",
+          "children": [
+            {
+              "name": "Plan: Structured artifacts"
+            },
+            {
+              "name": "Act: Bounded repo changes"
+            },
+            {
+              "name": "Evaluate: System signals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GitHub as Control Plane",
+      "children": [
+        {
+          "name": "Architectural Control Points",
+          "children": [
+            {
+              "name": "Pull Requests"
+            },
+            {
+              "name": "Required Status Checks"
+            },
+            {
+              "name": "CODEOWNERS"
+            },
+            {
+              "name": "Branch Protection"
+            }
+          ]
+        },
+        {
+          "name": "Execution Boundaries",
+          "children": [
+            {
+              "name": "Repository Scoping"
+            },
+            {
+              "name": "Branch Isolation"
+            },
+            {
+              "name": "Least-Privilege Tokens"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tooling and MCP",
+      "children": [
+        {
+          "name": "Model Context Protocol",
+          "children": [
+            {
+              "name": "MCP Servers: Expose tools"
+            },
+            {
+              "name": "Registries: Discovery"
+            },
+            {
+              "name": "Allow Lists: Governance"
+            }
+          ]
+        },
+        {
+          "name": "Custom Agent Profiles",
+          "children": [
+            {
+              "name": "YAML Frontmatter"
+            },
+            {
+              "name": "Markdown Instructions"
+            },
+            {
+              "name": "Agent Secrets/Vars"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Memory and State",
+      "children": [
+        {
+          "name": "Copilot Memory",
+          "children": [
+            {
+              "name": "Repo-level facts"
+            },
+            {
+              "name": "User-level preferences"
+            },
+            {
+              "name": "28-day expiration"
+            }
+          ]
+        },
+        {
+          "name": "Durable Artifacts"
+        },
+        {
+          "name": "Context Drift Mitigation"
+        }
+      ]
+    },
+    {
+      "name": "Guardrails and Operations",
+      "children": [
+        {
+          "name": "Risk-Tiered Autonomy",
+          "children": [
+            {
+              "name": "Low: Automerge"
+            },
+            {
+              "name": "High: Human-in-the-loop"
+            }
+          ]
+        },
+        {
+          "name": "Security Protections",
+          "children": [
+            {
+              "name": "Cloud Agent Firewall"
+            },
+            {
+              "name": "Workflow Gating"
+            },
+            {
+              "name": "Signed Verified Commits"
+            }
+          ]
+        },
+        {
+          "name": "Observability",
+          "children": [
+            {
+              "name": "Session Logs"
+            },
+            {
+              "name": "Audit Trails"
+            },
+            {
+              "name": "Traceability Links"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

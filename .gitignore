@@ -1,0 +1,21 @@
+# --- Excluded from this public repo ---
+
+# Marketing / channel-campaign internals — not for publication.
+youtube/
+
+# Verbatim third-party content (GitHub docs, Microsoft Learn module pages,
+# community articles). Kept local only — republishing copyrighted material
+# would expose the repo to DMCA takedown. Use the official links instead.
+modules/
+research/
+
+# Large media. The videos live on YouTube (see the playlist link in README);
+# no reason to duplicate ~90 MB of binaries in git.
+media/*.mp4
+media/*.m4a
+
+# Personal working notes.
+knowledge-gaps.md
+
+# OS cruft.
+.DS_Store
