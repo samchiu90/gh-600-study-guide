@@ -1,0 +1,69 @@
+name: Agent triage
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  triage:
+    if: contains(github.event.issue.labels.*.name, 'needs-triage')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # ---- 1. PLAN ----
+      - name: Produce structured plan
+        id: plan
+        run: |
+          cat > plan.md <<'PLAN'
+          # Triage plan for issue #${{ github.event.issue.number }}
+
+          Steps:
+          1. Read the issue body and labels.
+          2. Categorize: bug | feature | question | docs.
+          3. Assign appropriate label.
+          4. Comment with category and reasoning.
+          PLAN
+          echo "plan<<EOF" >> $GITHUB_OUTPUT
+          cat plan.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Upload plan as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: triage-plan-${{ github.event.issue.number }}
+          path: plan.md
+
+      # ---- 2. ACT ----
+      # (Real version would invoke a Copilot agent or MCP-backed action.
+      # For the lab we stub the action; the plan/act/evaluate shape is what matters.)
+      - name: Categorize and label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          body="${{ github.event.issue.body }}"
+          if echo "$body" | grep -qiE "error|crash|broken|bug"; then
+            label="bug"
+          elif echo "$body" | grep -qiE "would be nice|feature|request"; then
+            label="feature"
+          else
+            label="question"
+          fi
+          gh issue edit ${{ github.event.issue.number }} --add-label "$label"
+          echo "category=$label" >> $GITHUB_OUTPUT
+
+      # ---- 3. EVALUATE ----
+      - name: Comment with traceability record
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "🤖 Agent triage complete.
+          
+          See workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          Plan artifact: triage-plan-${{ github.event.issue.number }}"

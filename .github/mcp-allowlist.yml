@@ -1,0 +1,7 @@
+# Repository MCP allow list
+# Only servers listed here may be invoked by agents operating on this repo.
+allowed_servers:
+  - github-remote      # GitHub APIs via remote MCP
+  - docs-search        # internal documentation search
+denied_servers:
+  - "*"                # implicit deny for anything not listed above
